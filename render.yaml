@@ -2,6 +2,7 @@ services:
   # A static site for our frontend
   - type: web
     name: eco-route-frontend
+    plan: free # Specify the free instance type
     env: static
     # The root of the frontend files
     staticPublishPath: ./frontend
@@ -16,6 +17,7 @@ services:
   # A web service for our backend
   - type: web
     name: eco-route-backend
+    plan: free # Specify the free instance type
     env: python
     # The root of the backend files
     rootDir: ./backend
