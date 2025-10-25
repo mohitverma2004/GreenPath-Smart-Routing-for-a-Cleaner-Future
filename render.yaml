@@ -2,7 +2,7 @@ services:
   # A static site for our frontend
   - type: web
     name: eco-route-frontend
-    plan: free # Specify the free instance type
+    # plan: free # Not needed for static sites, they are free by default
     env: static
     # The root of the frontend files
     staticPublishPath: ./frontend
