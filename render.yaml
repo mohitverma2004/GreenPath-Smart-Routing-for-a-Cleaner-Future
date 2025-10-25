@@ -1,7 +1,7 @@
 services:
   # A static site for our frontend
   - type: web
-    name: eco-route-frontend
+    name: greenpath # This will be your main URL
     # plan: free # Not needed for static sites, they are free by default
     env: static
     # The root of the frontend files
