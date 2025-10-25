@@ -1,0 +1,30 @@
+services:
+  # A static site for our frontend
+  - type: web
+    name: eco-route-frontend
+    env: static
+    # The root of the frontend files
+    staticPublishPath: ./frontend
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://eco-route-backend.onrender.com/api/* # The backend URL
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # A web service for our backend
+  - type: web
+    name: eco-route-backend
+    env: python
+    # The root of the backend files
+    rootDir: ./backend
+    # The command to install dependencies
+    buildCommand: "pip install -r requirements.txt"
+    # The command to start the server
+    startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app"
+    envVars:
+      - key: TOMTOM_API_KEY
+        fromSecret: TOMTOM_API_KEY # You will need to create this secret in Render
+      - key: PYTHON_VERSION
+        value: 3.11.0
